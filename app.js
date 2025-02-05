@@ -8,8 +8,8 @@ require("dotenv").config();
 
 const { connectToMongoDb } = require("./config/db");
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexRouter = require('./routes/indexRouter');
+var usersRouter = require('./routes/usersRouter');
 
 var app = express();
 
