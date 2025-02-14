@@ -16,6 +16,11 @@ router.get('/getUserById/:id',userController.getUserById);
 router.delete('/deleteUserById/:id',userController.deleteUserById); 
 router.post('/addUserClientWithImg',upload.single("image_user"),userController.addUserClientWithImg); 
 router.put('/updateuserById/:id',userController.updateuserById); 
-
+router.get('/searchUserByUsername',userController.searchUserByUsername);
+router.get('/getAllUsersSortByAge',userController.getAllUsersSortByAge); 
+router.get('/getAllUsersAge/:age',userController.getAllUsersAge); 
+router.get('/getAllUsersAgeBetMaxAgeMinAge',userController.getAllUsersAgeBetMaxAgeMinAge);
+router.get('/getAllClient',userController.getAllClient); 
+router.get('/getAllAdmin',userController.getAllAdmin);
 
 module.exports = router;
