@@ -14,8 +14,8 @@ router.post('/addUserAdmin',userController.addUserAdmin);
 router.get('/getAllUsers',userController.getAllUsers); 
 router.get('/getUserById/:id',userController.getUserById); 
 router.delete('/deleteUserById/:id',userController.deleteUserById); 
-
 router.post('/addUserClientWithImg',upload.single("image_user"),userController.addUserClientWithImg); 
+router.put('/updateuserById/:id',userController.updateuserById); 
 
 
 module.exports = router;
