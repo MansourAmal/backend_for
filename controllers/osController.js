@@ -1,8 +1,9 @@
 const os = require('os');
 
+//structure de chaque fonction
 module.exports.esmfonction = async (req,res) => {
     try {
-        //..
+        //..traitement
         res.status(200).json({});
     } catch (error) {
         res.status(500).json({message: error.message});
