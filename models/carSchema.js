@@ -4,7 +4,7 @@ const carSchema = new mongoose.Schema(
     model: String,
     matricule: String,
     prix : Number,
-    owner : {type : mongoose.Schema.Types.ObjectId,ref: 'User'} // many 
+    owner : {type : mongoose.Schema.Types.ObjectId,ref: 'user'} // many 
     //owners : [{type : mongoose.Schema.Types.ObjectId,ref: 'User'}] // many 
     
 },

@@ -32,7 +32,6 @@ const userSchema = new mongoose.Schema({
     age: {type : Number },
     count: {type : Number, default:'0'},
     cars: [{ type: mongoose.Schema.Types.ObjectId, ref: "Car" }], //one to many
-
    // etat:{type:Boolean}
     },
     { timestamps: true }
