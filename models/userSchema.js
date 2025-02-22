@@ -30,7 +30,9 @@ const userSchema = new mongoose.Schema({
     },
     user_image: { type: String, require: false, default: "client.png" },
     age: {type : Number },
-    count: {type : Number, default:'0'}
+    count: {type : Number, default:'0'},
+    cars: [{ type: mongoose.Schema.Types.ObjectId, ref: "Car" }], //one to many
+
    // etat:{type:Boolean}
     },
     { timestamps: true }

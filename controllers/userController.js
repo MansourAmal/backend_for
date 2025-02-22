@@ -1,4 +1,5 @@
 const userModel = require("../models/userSchema");
+const carModel = require('../models/carSchema');
 
 module.exports.addUserClient = async (req, res) => {
   try {
@@ -78,22 +79,26 @@ module.exports.getUserById = async (req, res) => {
   }
 };
 
-module.exports.deleteUserById = async (req, res) => {
+module.exports.deleteUserById= async (req,res) => {
   try {
-    const { id } = req.params;
+      const {id} = req.params
 
-    const checkIfUserExists = await userModel.findById(id);
-    if (!checkIfUserExists) {
-      throw new Error("User not found");
-    }
+      const checkIfUserExists = await userModel.findById(id);
+      if (!checkIfUserExists) {
+        throw new Error("User not found");
+      }
 
-    await userModel.findByIdAndDelete(id);
+      await carModel.updateMany({owner : id},{
+          $unset: { owner: 1 },// null "" 
+        });
 
-    res.status(200).json("deleted");
+      await userModel.findByIdAndDelete(id)
+
+      res.status(200).json("deleted");
   } catch (error) {
-    res.status(500).json({ message: error.message });
+      res.status(500).json({message: error.message});
   }
-};
+}
 
 module.exports.updateuserById = async (req, res) => {
   try {
