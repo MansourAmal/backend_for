@@ -12,6 +12,8 @@ var indexRouter = require('./routes/indexRouter');
 var usersRouter = require('./routes/usersRouter');
 var osRouter = require('./routes/osRouter');
 var carRouter = require("./routes/carRouter");
+var GeminiRouter = require("./routes/GeminiRouter");
+
 
 
 var app = express();
@@ -29,7 +31,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/os', osRouter);
 app.use("/cars", carRouter);
-
+app.use("/Gemini", GeminiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
