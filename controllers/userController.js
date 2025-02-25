@@ -212,3 +212,13 @@ module.exports.login= async (req,res) => {
       res.status(500).json({message: error.message});
   }
 }
+
+module.exports.logout= async (req,res) => {
+  try {
+
+      res.cookie("jwt_token_9antra", "", {httpOnly:false,maxAge:1})
+      res.status(200).json("logged")
+  } catch (error) {
+      res.status(500).json({message: error.message});
+  }
+}

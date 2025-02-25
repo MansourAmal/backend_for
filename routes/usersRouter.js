@@ -24,5 +24,6 @@ router.get('/getAllClient',userController.getAllClient);
 router.get('/getAllAdmin',userController.getAllAdmin);
 
 router.post('/login',userController.login);
+router.post('/logout',userController.logout);
 
 module.exports = router;
