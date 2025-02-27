@@ -2,8 +2,8 @@ const userModel = require("../models/userSchema");
 const carModel = require('../models/carSchema');
 const jwt = require('jsonwebtoken');
 
-//const maxTime = 24 *60 * 60 //24H
-const maxTime = 1 * 60 //1min
+const maxTime = 24 *60 * 60 //24H
+//const maxTime = 1 * 60 //1min
 
 const createToken = (id) => {
   return jwt.sign({id},'net secret pfe', {expiresIn: maxTime })

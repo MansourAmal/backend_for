@@ -3,6 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require("express-session"); //session
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 require("dotenv").config();
 
@@ -27,6 +30,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));  //lier le app avec public
 
+app.use(session({   //config session
+  secret: "net secret pfe",
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: {secure: false},
+    maxAge: 24*60*60,
+  
+  },  
+}))
+
+passport.use(new GoogleStrategy({
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: 'http://localhost:5000/users/auth/google/callback',
+}, (accessToken, refreshToken, profile, done) => {
+  done(null, profile);
+}));
+
+app.use(passport.initialize());
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/os', osRouter);
@@ -45,8 +69,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  res.status(err.status || 500).json({ error: err.message });  
 });
 
 const server = http.createServer(app); //2 creation de serveur 
